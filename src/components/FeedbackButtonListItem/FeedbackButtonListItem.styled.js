@@ -14,12 +14,11 @@ export const FeedbackItem = styled.li`
   }
 
   &:nth-child(2) button {
-    border-color: var(--yellow-color);
+    border-color: var(--orange-color);
   }
 
   &:nth-child(2) button:is(:hover, :focus) {
-    color: currentColor;
-    background-color: var(--yellow-color);
+    background-color: var(--orange-color);
   }
 
   &:nth-child(3) button {
@@ -56,7 +55,9 @@ export const FeedbackButton = styled.button`
   }
 
   @media screen and (max-width: 767px) {
-    min-width: 70px;
+    gap: 12px;
+
+    min-width: 160px;
   }
 
   & svg {

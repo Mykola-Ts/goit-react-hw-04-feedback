@@ -6,6 +6,7 @@ import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Notification } from './Notification/Notification';
 import { Wrapper } from './App.styled';
+import { FeedbackRating } from './Rating/Rating';
 
 export const App = () => {
   const [feedbackOptions, setFeedbackOptions] = useState({
@@ -33,6 +34,9 @@ export const App = () => {
     }));
   };
 
+  const countRaiting = () =>
+    (((good * 1 + neutral * 0.5 + bad * 0) / totalFeedback) * 5).toFixed(1);
+
   return (
     <Layout>
       <Wrapper>
@@ -45,13 +49,18 @@ export const App = () => {
 
         <Section title="Statistics">
           {totalFeedback ? (
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={totalFeedback}
-              positivePercentage={countPositiveFeedbackPercentage()}
-            />
+            <>
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={totalFeedback}
+                positivePercentage={countPositiveFeedbackPercentage()}
+              />
+              <Section title="Rating">
+                <FeedbackRating rating={countRaiting()} />
+              </Section>
+            </>
           ) : (
             <Notification text="There is no feedback" />
           )}
